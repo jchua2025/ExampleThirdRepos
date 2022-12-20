@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,7 +14,7 @@ namespace Ticketing
         TicketPrice mTicketPrice;
         int mSection = 2;
         int mQuantity = 0;
-        bool mDiscount = false;
+        int mDiscount = 0;
 
         public TicketsForm()
         {
@@ -31,14 +31,18 @@ namespace Ticketing
             mQuantity = int.Parse(txtQuantity.Text);
 
             if (chkDiscount.Checked)
-                { mDiscount = true; }
+            { mDiscount = 1; }
+            else if (chkChild.Checked)
+            { mDiscount = 2; }
+            else if (!chkDiscount.Checked && !chkChild.Checked)
+            { mDiscount = 0; }
 
             if (radBalcony.Checked)
-                { mSection = 1; }
+            { mSection = 1; }
             if (radGeneral.Checked)
-                { mSection = 2; }
+            { mSection = 2; }
             if (radBox.Checked)
-                { mSection = 3; }
+            { mSection = 3; }
             if (radStall.Checked)
                 { mSection = 4; }
 
@@ -47,5 +51,15 @@ namespace Ticketing
             mTicketPrice.calculatePrice();
             lblAmount.Text = System.Convert.ToString(mTicketPrice.AmountDue);
         }
-     }
+
+        private void chkDiscount_CheckedChanged(object sender, EventArgs e)
+        {
+            chkChild.Checked = false;
+        }
+
+        private void chkChild_CheckedChanged(object sender, EventArgs e)
+        {
+            chkDiscount.Checked = false;
+        }
+    }
 }
