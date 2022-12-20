@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,8 +14,7 @@ namespace Ticketing
         TicketPrice mTicketPrice;
         int mSection = 2;
         int mQuantity = 0;
-        bool mDiscount = false;
-        bool childDiscount = false;
+        int mDiscount = 0;
 
         public TicketsForm()
         {
@@ -32,42 +31,33 @@ namespace Ticketing
             mQuantity = int.Parse(txtQuantity.Text);
 
             if (chkDiscount.Checked)
-            {
-                mDiscount = true;
-                childDiscount = false;
-            }
-
-            if (checkBox1.Checked)
-            {
-                childDiscount = true;
-                mDiscount = false;
-            }
+            { mDiscount = 1; }
+            else if (chkChild.Checked)
+            { mDiscount = 2; }
+            else if (!chkDiscount.Checked && !chkChild.Checked)
+            { mDiscount = 0; }
 
             if (radBalcony.Checked)
-                { mSection = 1; }
+            { mSection = 1; }
             if (radGeneral.Checked)
-                { mSection = 2; }
+            { mSection = 2; }
             if (radBox.Checked)
-                { mSection = 3; }
+            { mSection = 3; }
 
-            mTicketPrice = new TicketPrice(mSection, mQuantity, mDiscount, childDiscount);
+            mTicketPrice = new TicketPrice(mSection, mQuantity, mDiscount);
 
             mTicketPrice.calculatePrice();
             lblAmount.Text = System.Convert.ToString(mTicketPrice.AmountDue);
         }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+        private void chkDiscount_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                chkDiscount.Checked = false;
-            }
+            chkChild.Checked = false;
         }
-                private void chkDiscount_CheckedChanged(object sender, EventArgs e)
+
+        private void chkChild_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkDiscount.Checked)
-            {
-                checkBox1.Checked = false;
-            }
+            chkDiscount.Checked = false;
         }
     }
 }
