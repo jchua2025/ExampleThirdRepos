@@ -35,6 +35,7 @@
             this.chkDiscount = new System.Windows.Forms.CheckBox();
             this.radBalcony = new System.Windows.Forms.RadioButton();
             this.radGeneral = new System.Windows.Forms.RadioButton();
+            this.radStall = new System.Windows.Forms.RadioButton();
             this.radBox = new System.Windows.Forms.RadioButton();
             this.grpSection = new System.Windows.Forms.GroupBox();
             this.cmdCalculate = new System.Windows.Forms.Button();
@@ -115,12 +116,23 @@
             this.radBox.TabIndex = 8;
             this.radBox.Text = "Box Seats";
             this.radBox.UseVisualStyleBackColor = true;
+            //
+            // radStall
+            //
+            this.radStall.AutoSize = true;
+            this.radStall.Location = new System.Drawing.Point(26, 86);
+            this.radStall.Name = "radStall";
+            this.radStall.Size = new System.Drawing.Size(73, 17);
+            this.radStall.TabIndex = 9;
+            this.radStall.Text = "Back Stalls";
+            this.radStall.UseVisualStyleBackColor = true;
             // 
             // grpSection
             // 
             this.grpSection.Controls.Add(this.radBox);
             this.grpSection.Controls.Add(this.radGeneral);
             this.grpSection.Controls.Add(this.radBalcony);
+            this.grpSection.Controls.Add(this.radStall);
             this.grpSection.Location = new System.Drawing.Point(52, 141);
             this.grpSection.Name = "grpSection";
             this.grpSection.Size = new System.Drawing.Size(139, 111);
@@ -170,6 +182,7 @@
         private System.Windows.Forms.RadioButton radBalcony;
         private System.Windows.Forms.RadioButton radGeneral;
         private System.Windows.Forms.RadioButton radBox;
+        private System.Windows.Forms.RadioButton radStall;
         private System.Windows.Forms.GroupBox grpSection;
         private System.Windows.Forms.Button cmdCalculate;
     }
